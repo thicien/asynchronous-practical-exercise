@@ -1,7 +1,21 @@
+console.log("Start");
+
 setTimeout(() => {
-    console.log("one");
-}, 2000);
-setTimeout(() => {
-    console.log("two");
+  console.log("Timeout 1");
+
+  setTimeout(() => {
+    console.log("Timeout 2");
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("Promise inside Timeout");
+  });
+
 }, 0);
-console.log("three")
+
+Promise.resolve().then(() => {
+  console.log("Promise 1");
+});
+
+console.log("End");
+
