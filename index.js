@@ -1,21 +1,44 @@
+const queue = [];
+
+function addTask(task) {
+    queue.push(task);
+}
+
+function fakeDelay(task, delay) {
+    setTimeout(() => {
+        addTask(task); 
+    }, delay);
+}
+
 console.log("Start");
 
-setTimeout(() => {
-  console.log("Timeout 1");
+addTask(() => console.log("Task 1"));
+addTask(() => console.log("Task 2"));
 
-  setTimeout(() => {
-    console.log("Timeout 2");
-  }, 0);
+fakeDelay(() => console.log("Delayed Task (1000ms)"), 1000);
+fakeDelay(() => {
+    console.log("Delayed Task (500ms)");
 
-  Promise.resolve().then(() => {
-    console.log("Promise inside Timeout");
-  });
+    fakeDelay(() => console.log("Nested Delayed Task (200ms)"), 200);
+}, 500);
 
-}, 0);
-
-Promise.resolve().then(() => {
-  console.log("Promise 1");
+addTask(() => {
+    console.log("User clicked button event");
 });
 
+console.log("Processing tasks...");
+
+function runEventLoop() {
+    if (queue.length > 0) {
+        const task = queue.shift();
+        task();
+    }
+
+    setTimeout(runEventLoop, 0);
+}
+
+runEventLoop();
+
 console.log("End");
+
 
