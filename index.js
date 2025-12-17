@@ -41,4 +41,14 @@ runEventLoop();
 
 console.log("End");
 
+async function fetchData() {
+    try {
+        const response = await fetch(url);
+        console.log('The email is successfully validated');
+    } catch (error) {
+        console.log("This is not a valid email address");
+    }
+    
+ }
+
 
