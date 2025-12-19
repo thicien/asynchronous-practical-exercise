@@ -47,6 +47,62 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const loadBtn = document.getElementById('loadBtn');
+        const usernameInput = document.getElementById('username');
+        const loadingText = document.getElementById('loading');
+        const errotText = document.getElementById('error');
+        const profileDiv = document.getElementById('profile');
+        
+        const loadingEvent = new Event("loading");
+        const loadedEvent = new Event("loaded");
+        const errorEvent = new Event("errorOccured");
+        
+
+
+        document.addEventListener("loading", () => {
+            loadingText.style.display = "block";
+            profileDiv.innerHTML = "";
+            errorText.textContent = "";
+        });
+
+        document.addEventListener("loaded", () => {
+            loadingText.style.display = "none";
+        })
+
+        document.addEventListener("errorOccured", () => {
+            loadingEvent.style.display = "none";
+        })
+
+        async function loadGitHubProfile(username) {
+            try{
+              document.dispatchEvent(loadingEvent);
+              const response = await fetch(`https://api.github.com/users/${username}`);
+                if(!response.ok) {
+                    throw new Error("User not found");
+                }
+                const data = await response.json();
+                document.dispatchEvent(loadedEvent);
+                displayProfile(data);
+            } catch (error) {
+                document.dispatchEEvent(errorEvent);
+                errorText.textContent = error.message;
+            }
+        }
+
+        function displayProfile(user) {
+            profileDiv.innerHTML = `<img src = "${user.avatar_url}" alt = "Avatar">
+                                    <h3>${user.name || "No name provided"}</h3>
+                                    <p>Public Repositories: ${user.public_repos}</p>
+        `;
+        }
+
+        loadBtn.addEventListener("click", () => {
+            const username = usernameInput.value.trim();
+            if(username) {
+                loadGitHubProfile(username);
+            }
+        });
+    </script>
 </body>
 </html>
