@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Async GitHub Profile Loader</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+
+        <h2 class="text-2xl font-bold text-center mb-4">
+            GitHub Profile Loader
+        </h2>
+
+        <div class="flex gap-2 mb-4">
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter GitHub username"
+                class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+                id="loadBtn"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+                Load
+            </button>
+        </div>
+
+        <p
+            id="loading"
+            class="text-blue-600 text-center font-medium hidden"
+        >
+            Loading...
+        </p>
+
+        <p
+            id="error"
+            class="text-red-600 text-center font-medium"
+        ></p>
+        <div
+            id="profile"
+            class="mt-4 flex flex-col items-center gap-2"
+        ></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
