@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Async GitHub Profile Loader</title>
+    <title>GitHub Profile</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -22,28 +22,17 @@
                 class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
-                id="loadBtn"
-                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-            >
+                id="loadBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
                 Load
             </button>
         </div>
 
-        <p
-            id="loading"
-            class="text-blue-600 text-center font-medium hidden"
-        >
+        <p id="loading" class="text-blue-600 text-center font-medium hidden">
             Loading...
         </p>
 
-        <p
-            id="error"
-            class="text-red-600 text-center font-medium"
-        ></p>
-        <div
-            id="profile"
-            class="mt-4 flex flex-col items-center gap-2"
-        ></div>
+        <p id="error" class="text-red-600 text-center font-medium"></p>
+        <div id="profile" class="mt-4 flex flex-col items-center gap-2"></div>
 
     </div>
 
