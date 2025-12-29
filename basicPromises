@@ -1,9 +1,9 @@
 const myPromise = new Promise((resolve, reject) => {
     let success = true;
     if (success) {
-        resolve("Task completed");
+        resolve(" Task completed ");
     } else {
-        reject("Task failed");
+        reject(" Task failed ");
     }
 })
 myPromise
