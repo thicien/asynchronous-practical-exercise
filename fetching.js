@@ -5,8 +5,8 @@ function fetchData(callback) {
             name: "Thicien",
             age: 29
         };
+        callback(user);
     }, 4000);
-    callback(data);
 }
 function displayData(user) {
     console.log("Name:", user.name);
