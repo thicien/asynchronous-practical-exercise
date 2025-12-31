@@ -4,7 +4,7 @@ function paymentProcess(amount, callback) {
         console.log("Payment is successful");
     }, 2000)
 }
-showPaymentConfirmation(message){
+showPaymentConfirmation(message) {
     console.log("Payment Confirmation:" + message);
 }
 paymentProcess(1000, showPaymentConfirmation);
