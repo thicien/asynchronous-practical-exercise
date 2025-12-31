@@ -54,6 +54,6 @@ function displayProfile(user) {
 loadBtn.addEventListener("click", () => {
     const username = usernameInput.value.trim();
     if (username) {
-        loadGitHubProfile(username);
+       loadGitHubProfile(username);
     }
 });
