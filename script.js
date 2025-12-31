@@ -8,7 +8,6 @@ const loadingEvent = new Event("loading");
 const loadedEvent = new Event("loaded");
 const errorEvent = new Event("errorOccurred");
 
-// EVENT LISTENERS
 document.addEventListener("loading", () => {
     loadingText.style.display = "block";
     profileDiv.innerHTML = "";
