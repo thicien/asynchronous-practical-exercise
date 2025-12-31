@@ -25,7 +25,6 @@ document.addEventListener("errorOccurred", () => {
 async function loadGitHubProfile(username) {
     try {
         document.dispatchEvent(loadingEvent);
-
         const response = await fetch(`https://api.github.com/users/${username}`);
 
         if (!response.ok) {
