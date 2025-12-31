@@ -1,4 +1,3 @@
-// Selecting elements
 const loadBtn = document.getElementById("loadBtn");
 const usernameInput = document.getElementById("username");
 const profileDiv = document.getElementById("profile");
