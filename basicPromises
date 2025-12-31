@@ -1,5 +1,5 @@
 const myPromise = new Promise((resolve, reject) => {
-    let success = true
+    let success = true;
     if (success) {
         resolve(" Task completed ");
     } else {
