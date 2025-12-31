@@ -4,7 +4,6 @@ const profileDiv = document.getElementById("profile");
 const loadingText = document.getElementById("loading");
 const errorText = document.getElementById("error");
 
-// CUSTOM EVENTS
 const loadingEvent = new Event("loading");
 const loadedEvent = new Event("loaded");
 const errorEvent = new Event("errorOccurred");
