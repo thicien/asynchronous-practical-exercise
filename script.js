@@ -22,7 +22,6 @@ document.addEventListener("errorOccurred", () => {
     loadingText.style.display = "none";
 });
 
-// MAIN ASYNC FUNCTION
 async function loadGitHubProfile(username) {
     try {
         document.dispatchEvent(loadingEvent);
@@ -44,7 +43,6 @@ async function loadGitHubProfile(username) {
     }
 }
 
-// DISPLAY FUNCTION
 function displayProfile(user) {
     profileDiv.innerHTML = `
         <img src="${user.avatar_url}" alt="Avatar">
@@ -53,7 +51,6 @@ function displayProfile(user) {
     `;
 }
 
-// BUTTON CLICK EVENT
 loadBtn.addEventListener("click", () => {
     const username = usernameInput.value.trim();
     if (username) {
