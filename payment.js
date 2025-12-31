@@ -2,6 +2,7 @@ function paymentProcess(amount, callback) {
     console.log("Processing of payment: $" + amount);
     setTimeout(() => {
         console.log("Payment is successful");
+        callback("Payment completed successfully");
     }, 2000)
 }
 showPaymentConfirmation(message) {
