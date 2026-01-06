@@ -20,6 +20,9 @@ async function TransferFunds(balance, amount) {
         await checkBalance(balance, amount);
         await deductMoney();
         const sms = await sendSMS();
-        console.log(;
+        console.log("Transaction successful:", sms);
+    } catch (error) {
+        console.error("Transaction failed:". error)
     }
 }
+TransferFunds(5000, 3000);
