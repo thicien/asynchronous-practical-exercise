@@ -8,7 +8,7 @@ function checkBalance(balance, amount) {
 
 function deductMoney() {
     return new Promise((resolve) =>
-        setTimeout(() => resolve("Money deducted from your account"), 1000));
+            setTimeout(() => resolve("Money deducted from your account"), 1000));
 }
 function sendSMS() {
     return new Promise((resolve) =>
