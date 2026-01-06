@@ -15,7 +15,7 @@ function sendSMS() {
             setTimeout(() => resolve("SMS sent to your registered mobile number"), 1000));
 }
 
-async function TransferFunds(balance, amount) {
+async function TransferMoney(balance, amount) {
     try {
         await checkBalance(balance, amount);
         await deductMoney();
