@@ -12,7 +12,7 @@ function checkStock() {
 }
 async function checkOut() {
     try {
-        const results = awaitPromise.all([processPayment(), verifyAddress(), checkStock()]);
+        const results = await Promise.all([processPayment(), verifyAddress(), checkStock()]);
         console.log("checkout completed:", results);
     } catch (error) {
         console.error("checkout failed:", error);
