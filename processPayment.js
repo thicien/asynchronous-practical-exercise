@@ -8,7 +8,7 @@ function verifyAddress() {
 }
 function checkStock() {
     return new Promise((resolve) => 
-        setTimeout(() => resolve("Items are in the stock "), 1000));
+        setTimeout(() => resolve("Items are in the stock"), 1000));
 }
 async function checkOut() {
     try {
