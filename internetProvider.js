@@ -16,3 +16,4 @@ async function internet() {
 } catch(error) {
     console.error("All IsPs are down");
 }
+internet();
