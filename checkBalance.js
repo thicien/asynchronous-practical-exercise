@@ -25,4 +25,4 @@ async function TransferFunds(balance, amount) {
         console.error("Transaction failed:". error)
     }
 }
-TransferFunds(5000, 3000);
+TransferMoney(5000, 3000);
