@@ -1,6 +1,6 @@
 function checkBalance(balance, amount) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
+           setTimeout(() => {
             balance >= amount ? resolve("Transaction Approved") : reject("Insufficient balance");
         }, 2000);
     });
