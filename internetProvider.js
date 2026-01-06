@@ -11,9 +11,11 @@ function isp3() {
         setTimeout(() => resolve("ISP 3 is connected"), 1000));
 }
 async function internet() {
-    const connection = await Promise.race([isp1(), isp2(), isp3()]);
-    console.log(connection);
-} catch(error) {
-    console.error("All IsPs are down");
+    try {
+        const connection = await Promise.race([isp1(), isp2(), isp3()]);
+        console.log(connection);
+    } catch (error) {
+        console.error("All IsPs are down");
+    }
 }
 internet();
