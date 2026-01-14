@@ -1,12 +1,12 @@
 async function fetchWithRetry(url, retries = 3, delay = 1000) {
   try {
-    const response = await fetch(url)
+    const response = await fetch('https://api.github.com/users/${username}')
 
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`)
     }
 
-    return await response.json()
+      return await response.json();
 
   } catch (error) {
     if (retries === 0) {
