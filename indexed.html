@@ -1,170 +1,152 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // SESSION: Retrieve username
+    String username = (String) session.getAttribute("username");
+
+    // Java model inside JSP (for lab simplicity)
+    class Bus {
+        String name, route, status, image;
+        Bus(String name, String route, String status, String image) {
+            this.name = name;
+            this.route = route;
+            this.status = status;
+            this.image = image;
+        }
+    }
+
+    // REAL BUS IMAGES (Unsplash - real photographs)
+    Bus[] buses = {
+        new Bus(
+            "City Express",
+            "Kigali → Musanze",
+            "Available",
+            "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
+        ),
+        new Bus(
+            "Volcano Coach",
+            "Kigali → Rubavu",
+            "Fully Booked",
+            "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80"
+        ),
+        new Bus(
+            "Rwanda Safaris",
+            "Kigali → Huye",
+            "Available",
+            "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80"
+        )
+    };
+%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Fleet Management</title>
+    <title>Bus Dashboard</title>
+
+    <!-- ===== Embedded CSS ===== -->
     <style>
-        :root {
-            --gold: #c5a059;
-            --dark-blue: #0f172a;
-            --white: #ffffff;
-            --gray: #64748b;
-        }
-
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #05070a;
-            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
 
-        header {
-            padding: 60px 20px;
+        .welcome {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        h2 {
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
-                        url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            border-bottom: 3px solid var(--gold);
+            margin-bottom: 30px;
         }
 
-        header h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .bus-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .bus-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        /* Professional Card Design */
         .bus-card {
-            position: relative;
-            height: 400px;
-            border-radius: 8px;
+            background: #ffffff;
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            background: #1e293b;
+            transition: transform 0.3s ease;
+        }
+
+        .bus-card:hover {
+            transform: translateY(-5px);
         }
 
         .bus-card img {
             width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .bus-card:hover img {
-            transform: scale(1.1) rotate(1deg);
+        .bus-card h3 {
+            margin: 15px;
+            color: #222;
         }
 
-        /* Professional Info Overlay */
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 30px 20px;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+        .bus-card p {
+            margin: 0 15px 10px;
+            color: #555;
         }
 
-        .bus-card:hover .overlay {
-            transform: translateY(0);
-        }
-
-        .bus-type {
-            color: var(--gold);
+        .status {
+            display: inline-block;
+            margin: 10px 15px 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: bold;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            display: block;
         }
 
-        .bus-title {
-            font-size: 1.5rem;
-            margin: 0;
-            font-weight: 600;
+        .available {
+            background-color: #d4edda;
+            color: #155724;
         }
 
-        .bus-details {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            margin-top: 10px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .bus-card:hover .bus-details {
-            opacity: 1;
+        .busy {
+            background-color: #f8d7da;
+            color: #721c24;
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Global Bus Fleet</h1>
-    <p>Premium Transportation Solutions & Logistics</p>
-</header>
-
-<div class="container">
-    <div id="fleet-container" class="bus-grid">
-        </div>
+<!-- ===== SESSION DISPLAY ===== -->
+<div class="welcome">
+    Welcome,
+    <strong><%= (username != null) ? username : "Guest" %></strong>
 </div>
 
-<script>
-    // 10 Real Bus Images with specific high-res professional links
-    const fleet = [
-        { name: "Luxury Coach X1", type: "Executive Travel", img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" },
-        { name: "City Transit Pro", type: "Urban Transport", img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80" },
-        { name: "Double Decker E1", type: "London Heritage", img: "https://images.unsplash.com/photo-1562620644-656450258045?auto=format&fit=crop&w=800&q=80" },
-        { name: "Mountain Express", type: "Touring Bus", img: "https://images.unsplash.com/photo-1557223562-6c77ef16210f?auto=format&fit=crop&w=800&q=80" },
-        { name: "Solaris Urbino", type: "Electric City", img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" },
-        { name: "Grand Tourer", type: "Interstate", img: "https://images.unsplash.com/photo-1616431575958-32c668295976?auto=format&fit=crop&w=800&q=80" },
-        { name: "EuroStar Coach", type: "Cross-Border", img: "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=800&q=80" },
-        { name: "Metropolitan 50", type: "Public Service", img: "https://images.unsplash.com/photo-1494515426402-f1980ace7a9c?auto=format&fit=crop&w=800&q=80" },
-        { name: "VIP Shuttle", type: "Airport Service", img: "https://images.unsplash.com/photo-1509744645300-a24447637542?auto=format&fit=crop&w=800&q=80" },
-        { name: "Retro Cruiser", type: "Classic Rental", img: "https://images.unsplash.com/photo-1520038410233-7141f77e47a6?auto=format&fit=crop&w=800&q=80" }
-    ];
+<h2>Available Buses</h2>
 
-    const container = document.getElementById('fleet-container');
+<div class="bus-container">
 
-    function loadFleet() {
-        fleet.forEach(bus => {
-            const card = document.createElement('div');
-            card.className = 'bus-card';
-            card.innerHTML = `
-                <img src="${bus.img}" alt="${bus.name}">
-                <div class="overlay">
-                    <span class="bus-type">${bus.type}</span>
-                    <h2 class="bus-title">${bus.name}</h2>
-                    <p class="bus-details">
-                        Capacity: 54 Seats<br>
-                        Engine: Hybrid-Electric<br>
-                        Features: WiFi, AC, Leather Interior
-                    </p>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
+    <!-- ===== Dynamic Bus Rendering ===== -->
+    <%
+        for (Bus bus : buses) {
+            String statusClass = bus.status.equals("Available") ? "available" : "busy";
+    %>
+        <div class="bus-card">
+            <img src="<%= bus.image %>" alt="Real Bus Photo">
+            <h3><%= bus.name %></h3>
+            <p>Route: <%= bus.route %></p>
+            <span class="status <%= statusClass %>"><%= bus.status %></span>
+        </div>
+    <%
+        }
+    %>
 
-    window.onload = loadFleet;
-</script>
+</div>
 
 </body>
 </html>
