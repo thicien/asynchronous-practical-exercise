@@ -41,8 +41,6 @@
 <html>
 <head>
     <title>Bus Dashboard</title>
-
-    <!-- ===== Embedded CSS ===== -->
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -121,7 +119,6 @@
 
 <body>
 
-<!-- ===== SESSION DISPLAY ===== -->
 <div class="welcome">
     Welcome,
     <strong><%= (username != null) ? username : "Guest" %></strong>
@@ -131,7 +128,6 @@
 
 <div class="bus-container">
 
-    <!-- ===== Dynamic Bus Rendering ===== -->
     <%
         for (Bus bus : buses) {
             String statusClass = bus.status.equals("Available") ? "available" : "busy";
