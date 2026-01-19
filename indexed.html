@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    // SESSION: Retrieve username
     String username = (String) session.getAttribute("username");
 
-    // Java model inside JSP (for lab simplicity)
     class Bus {
         String name, route, status, image;
         Bus(String name, String route, String status, String image) {
@@ -14,7 +12,6 @@
         }
     }
 
-    // REAL BUS IMAGES (Unsplash - real photographs)
     Bus[] buses = {
         new Bus(
             "City Express",
