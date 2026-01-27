@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Ticket Booking</title>
+</head>
+<body>
+    <h1>Available Buses</h1>
+
+    <button onclick="loadBuses()">Show Buses</button>
+
+    <div id="busList"></div>
+
+    <script>
+        function loadBuses() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "buses.json", true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const buses = JSON.parse(xhr.responseText);
+                    let html = "<ul>";
+                    buses.forEach(bus => {
+                        html += `<li>Route: ${bus.route}, Time: ${bus.time}</li>`;
+                    });
+                    html += "</ul>";
+
+                    document.getElementById("busList").innerHTML = html;
+                } else {
+                    document.getElementById("busList").innerHTML = "Error loading buses.";
+                }
+            };
+            
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
