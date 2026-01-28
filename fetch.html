@@ -5,9 +5,7 @@
 </head>
 <body>
     <h1>Available Buses</h1>
-
     <button onclick="loadBuses()">Show Buses</button>
-
     <div id="busList"></div>
 
     <script>
@@ -28,7 +26,6 @@
                     document.getElementById("busList").innerHTML = "Error loading buses.";
                 }
             };
-            
             xhr.send();
         }
     </script>
