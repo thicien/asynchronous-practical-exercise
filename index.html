@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>GitHub Profile</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
@@ -26,10 +25,8 @@
         <p id="loading" class="text-blue-600 text-center font-medium hidden">
             Loading...
         </p>
-
         <p id="error" class="text-red-600 text-center font-medium"></p>
         <div id="profile" class="mt-4 flex flex-col items-center gap-2"></div>
-
     </div>
 
     <script>
@@ -75,7 +72,7 @@
 
         function displayProfile(user) {
             profileDiv.innerHTML = `<img src = "${user.avatar_url}" alt = "Avatar">
-                                    <h3>${user.name || "No name provided"}</h3>
+            <h3>${user.name || "No name provided"}</h3>
                                     <p>Public Repositories: ${user.public_repos}</p>
         `;
         }
