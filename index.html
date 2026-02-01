@@ -73,8 +73,7 @@
         function displayProfile(user) {
             profileDiv.innerHTML = `<img src = "${user.avatar_url}" alt = "Avatar">
             <h3>${user.name || "No name provided"}</h3>
-            <p>Public Repositories: ${user.public_repos}</p>
-        `;
+            <p>Public Repositories: ${user.public_repos}</p>`;
         }
         loadBtn.addEventListener("click", () => {
             const username = usernameInput.value.trim();
