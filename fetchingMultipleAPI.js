@@ -1,7 +1,7 @@
 function fetchMultipleAPIs() {
-    const api1 = fetch().then(response => response.json());
-    const api2 = fetch().then(response => response.json());
-    const api3 = fetch().then(response => response.json());
+    const api1 = fetch("https://jsonplaceholder.typicode.com/posts/1").then(response => response.json());
+    const api2 = fetch("https://jsonplaceholder.typicode.com/users/1").then(response => response.json());
+    const api3 = fetch("https://jsonplaceholder.typicode.com/comments/1").then(response => response.json());
     return Promise.all([api1, api2, api3]).then(results => {
         return {
             user: results[0],
