@@ -1,4 +1,3 @@
-
 async function getFastPosts() {
     const urls = [
         "https://jsonplaceholder.typicode.com/posts/1",
