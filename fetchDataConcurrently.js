@@ -20,7 +20,7 @@ async function getFastPosts() {
         }
         throw error;
     }
-getFastPosts()
+    getFastPosts()
      .then(posts => {
          console.log("Fastest posts received:", posts);
      })
