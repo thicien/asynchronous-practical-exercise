@@ -15,37 +15,3 @@ function fetchMultipleAPIs() {
 fetchMultipleAPIs().then(data => {
     console.log(data)
 });
-
-
-async function fetchMultipleAPIs() {
-try {
-// API URLs
-const api1 = "https://jsonplaceholder.typicode.com/users";
-const api2 = "https://jsonplaceholder.typicode.com/posts";
-const api3 = "https://jsonplaceholder.typicode.com/comments";
-// Fetch all APIs concurrently
-const responses = await Promise.all([
-  fetch(api1),
-  fetch(api2),
-  fetch(api3)
-]);
-
-// Convert all responses to JSON
-const data = await Promise.all(
-  responses.map(response => response.json())
-);
-
-// Combine results into one object
-const combinedResult = {
-  users: data[0],
-  posts: data[1],
-  comments: data[2]
-};
-
-return combinedResult;
-
-} catch (error) {
-console.error("Error fetching APIs:", error);
-throw error;
-}
-}
