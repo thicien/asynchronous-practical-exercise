@@ -5,7 +5,8 @@ async function getFastPosts() {
         "https://jsonplaceholder.typicode.com/comments/1"
     ];
         const requests = urls.map(url => 
-            fetch(url).then(response => {
+            fetch(url)
+                .then(response => {
                 if(!response.ok) {
                     throw new Error(`Failed to fetch data from ${url}`);
                 }
