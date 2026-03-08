@@ -1,18 +1,10 @@
-function divideNumbers(a, b) {
-  try {
-    if (b === 0) {
-      throw new Error("Cannot divide by zero");
+try {
+    let num = 10;
+    let result = num / 0;
+    if (result === Infinity) {
+        throw new Error("This is not divisible by zero");
     }
-
-    let result = a / b;
-    console.log("Result:", result);
-
-  } catch (error) {
-    console.log("Error:", error.message);
-  } finally {
-    console.log("Division operation completed.");
-  }
+    console.log(result);
+} catch (error) {
+    console.log(error.message);
 }
-
-divideNumbers(10, 2);
-divideNumbers(10, 0);
